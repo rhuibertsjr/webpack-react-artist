@@ -1,7 +1,8 @@
-import React from 'react';
+import { WebGLRenderer } from 'three';
 
-const Renderer = props => {
-    return <div></div>;
-}
+const Renderer = antialias => {
+    const renderer = new WebGLRenderer({ antialias: antialias});
+    return renderer;
+} 
 
 export default Renderer;

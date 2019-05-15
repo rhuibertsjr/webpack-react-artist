@@ -7,7 +7,7 @@ import SceneContainer from './containers/scene-container/SceneContainer';
 const Index = () => {
     return (
         <div className="app-container">
-            <SceneContainer></SceneContainer>
+            <SceneContainer height={window.innerHeight} width={window.innerWidth}></SceneContainer>
         </div>
     )
 }
