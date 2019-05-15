@@ -17,19 +17,22 @@ extends Component {
         this.startRenderer = this.startRenderer.bind(this);
         this.cancelRenderer = this.cancelRenderer.bind(this);
         this.animateScene = this.animateScene.bind(this);
+        this.onResizeEventHandler = this.onResizeEventHandler.bind(this);
     }
 
     componentDidMount() {
         this.scene = new Display();
         this.camera = new Camera( 75, this.state.width / this.state.height, 0.1, 1000, 4 );
-        this.renderer = new Renderer( this.state.width, this.state.height,true );
+        this.renderer = Renderer( this.state.width, this.state.height, false);
 
         this.mount.appendChild(this.renderer.domElement);
         this.startRenderer();
+
+        window.addEventListener('resize', this.onResizeEventHandler);
     }
 
     componentWillUnmount() {
-        this.stop()
+        this.cancelRenderer()
         this.mount.removeChild(this.renderer.domElement)
     }
 
@@ -46,9 +49,14 @@ extends Component {
         this.frameId = window.requestAnimationFrame(this.animateScene);
     }
 
+    onResizeEventHandler() {
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+
     render() {
         return ( 
-            <div className="template" ref = { (mount) => { this.mount = mount } }/>
+            <div className="app-renderer" ref={ (mount) => { this.mount = mount }}/>
         )
     }
 }
