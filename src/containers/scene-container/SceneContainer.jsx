@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Display from '../../components/display/Display';
 import Camera from '../../components/camera/Camera';
 import Renderer from '../../components/renderer/Renderer';
+import Scene from '../../components/scene/Scene';
+import Model from '../../components/model/Model';
 
 export default class SceneContainer
 extends Component {
@@ -24,7 +26,11 @@ extends Component {
         this.scene = new Display();
         this.camera = new Camera( 75, this.state.width / this.state.height, 0.1, 1000, 4 );
         this.renderer = Renderer( this.state.width, this.state.height, false);
+        this.mesh = new Model();
 
+        if (this.mesh) this.scene.add(this.mesh);
+        this.camera.position.z = 4;
+ 
         this.mount.appendChild(this.renderer.domElement);
         this.startRenderer();
 
@@ -56,7 +62,7 @@ extends Component {
 
     render() {
         return ( 
-            <div className="app-renderer" ref={ (mount) => { this.mount = mount }}/>
+            <Scene render={ (mount) => { this.mount = mount }}/>
         )
     }
 }
