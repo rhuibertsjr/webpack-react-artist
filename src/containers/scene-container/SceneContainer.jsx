@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Display from '../../components/display/Display';
 import Camera from '../../components/camera/Camera';
@@ -65,4 +66,9 @@ extends Component {
             <Scene render={ (mount) => { this.mount = mount }}/>
         )
     }
+}
+
+SceneContainer.propTypes = {
+    height: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired
 }
