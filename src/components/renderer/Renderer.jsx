@@ -1,7 +1,6 @@
 import { WebGLRenderer } from 'three';
 import PropTypes from 'prop-types';
 
-
 const Renderer = (width, height, antialias) => {
     const renderer = new WebGLRenderer({ antialias: antialias});
     renderer.setClearColor('#000000');

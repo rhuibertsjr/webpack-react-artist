@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 
 const Camera = (fov, aspr) => {
-    let camera = new PerspectiveCamera(fov, aspr, 0.1, 1000);
+    let camera = new PerspectiveCamera(fov, aspr, 0.1, 200 );
     return camera;
 }
 

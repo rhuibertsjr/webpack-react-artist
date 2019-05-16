@@ -24,13 +24,13 @@ extends Component {
     }
 
     componentDidMount() {
-        this.scene = new Display();
-        this.camera = new Camera( 75, this.state.width / this.state.height, 0.1, 1000, 4 );
+        this.scene = new Display('#242424');
+        this.camera = new Camera( 75, this.state.width / this.state.height );
         this.renderer = Renderer( this.state.width, this.state.height, false);
         this.mesh = new Model();
 
         if (this.mesh) this.scene.add(this.mesh);
-        this.camera.position.z = 4;
+        this.camera.position.y = 5;
  
         this.mount.appendChild(this.renderer.domElement);
         this.startRenderer();
@@ -52,6 +52,12 @@ extends Component {
     }
 
     animateScene() {
+
+        let timer = Date.now() * 0.0001;
+		this.camera.position.x = Math.sin( timer ) * 0.5;
+		this.camera.position.z = Math.cos( timer ) * 0.5;
+		this.camera.lookAt( 0, 1.7, 0 );
+
         this.renderer.render(this.scene, this.camera);
         this.frameId = window.requestAnimationFrame(this.animateScene);
     }
