@@ -3,6 +3,8 @@ import { WebGLRenderer, PerspectiveCamera, Scene } from 'three';
 
 import SceneRenderer from '../../components/scene-renderer/Scene';
 import { Terrain } from '../../components/scene-subjects/Terrain';
+import { Cube } from '../../components/scene-subjects/Cube';
+
 
 export default class SceneManager
 extends Component {
@@ -15,15 +17,20 @@ extends Component {
             width: this.props.width
         };
 
+        this.componentStartRender = this.componentStartRender.bind(this);
         this.componentAddSubjects = this.componentAddSubjects.bind(this);
         this.componentLoadSubjects = this.componentLoadSubjects.bind(this);
         this.componentOnResize = this.componentOnResize.bind(this);
     }
 
     componentDidMount() {
-        // Initialize Scene + Camera
+        // Initialize Scene
         this.scene = new Scene();
+
+        // Initialize Camera
         this.camera  = new PerspectiveCamera( 75, this.state.aspect, 1, 1000);
+        this.camera.position.set(0,10,0); 
+        this.camera.lookAt(this.scene.position);
 
         // Initialize Renderer
         this.renderer = new WebGLRenderer({ antialias: true });
@@ -40,7 +47,8 @@ extends Component {
 
     componentAddSubjects() {
         const sceneSubjects = [
-            new Terrain(this.scene)
+            new Cube(this.scene),
+            new Cube(this.scene)
         ];
 
         return sceneSubjects;
@@ -54,7 +62,11 @@ extends Component {
 
         // Start Rendering
         this.renderer.render(this.scene, this.camera);
-        requestAnimationFrame( this.componentLoadSubjects );
+    }
+
+    componentStartRender() {
+        this.renderer.render(this.scene, this.camera);
+        requestAnimationFrame( this.componentStartRender );
     }
 
     componentOnResize() {
