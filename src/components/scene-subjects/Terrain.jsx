@@ -8,7 +8,7 @@ export const Terrain = scene => {
 
     scene.add( mesh );
 
-    this.update = () => {
-        
+    this.update = function() {
+
     }
 }
