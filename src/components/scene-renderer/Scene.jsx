@@ -1,10 +1,10 @@
 import React from 'react'
 import WEBGL from '../../utils/available';
 
-const Scene = props => {
+const SceneRenderer = props => {
 
     if ( WEBGL.isWebGLAvailable() ) {
-        return <div className="app-renderer" ref={ props.render }/>
+        return <div className="app-renderer" ref={ props.render } ></div>
     } else {
         var warning = WEBGL.getWebGLErrorMessage();
         console.log(warning);
@@ -12,4 +12,4 @@ const Scene = props => {
     
 }
 
-export default Scene;
+export default SceneRenderer;
