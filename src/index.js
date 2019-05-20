@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/index.scss';
 
-import SceneContainer from './containers/scene-container/SceneContainer';
+import SceneManager from './containers/scene-manager/SceneManager';
 
 const Index = () => {
     return (
         <div className="app-container">
-            <SceneContainer height={window.innerHeight} width={window.innerWidth}></SceneContainer>
+            <SceneManager height={window.innerHeight} width={window.innerWidth}></SceneManager>
         </div>
     )
 }
