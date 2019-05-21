@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { WebGLRenderer, PerspectiveCamera, Scene } from 'three';
 
-import SceneRenderer from '../../components/scene-renderer/Scene';
-import { Terrain } from '../../components/scene-subjects/Terrain';
-import { Cube } from '../../components/scene-subjects/Cube';
-
+import SceneRenderer from '../../components/scene-renderer/SceneRenderer';
+import { Terrain, Cube, FogRender } from '../../components/scene-subjects/SceneSubjects';
 
 export default class SceneManager
 extends Component {
@@ -29,9 +27,8 @@ extends Component {
 
         // Initialize Camera
         this.camera  = new PerspectiveCamera( 75, this.state.aspect, 1, 1000);
-        this.camera.position.set(0,100,0); 
+        this.camera.position.set(3,10,0); 
         this.camera.lookAt(this.scene.position);
-
         this.scene.add(this.camera);
 
         // Initialize Renderer
@@ -47,20 +44,24 @@ extends Component {
         window.addEventListener('resize', this.componentOnResize, false);
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.componentOnResize, true);
+    }
+
     componentAddSubjects() {
         const sceneSubjects = [
-            new Terrain(this.scene)
+            new Terrain(this.scene),
+            new FogRender(this.scene),
+            new Cube(this.scene)
         ];
 
-        return sceneSubjects;
+        return sceneSubjects;   
     }
 
     componentLoadSubjects() {
         this.sceneSubjects = this.componentAddSubjects();
         for ( let i = 0; i < this.sceneSubjects.length; i++ ) {
             this.sceneSubjects[i].update(this.scene);
-            console.log(this.sceneSubjects[i]);
-            
         }
 
         // Start Rendering
