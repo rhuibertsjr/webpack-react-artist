@@ -32,12 +32,12 @@ module.exports = {
                 }]
             },
             {
-                test: /.*\.(gif|png|jpe?g|svg)$/i,
+                test: /.*\.(gif|png|jpe?g|svg|ico)$/i,
                 use: [
                     {
                         loader: 'file-loader',
                         options: {
-                            name: 'assets/[name]_[hash:7].[ext]',
+                            name: 'assets/[name].[ext]',
                         }
                     },
                 ]

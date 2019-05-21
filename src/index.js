@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/index.scss';
+import '../public/favicon.ico';
 
 import SceneManager from './containers/scene-manager/SceneManager';
 
