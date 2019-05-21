@@ -32,6 +32,8 @@ extends Component {
         this.camera.position.set(0,100,0); 
         this.camera.lookAt(this.scene.position);
 
+        this.scene.add(this.camera);
+
         // Initialize Renderer
         this.renderer = new WebGLRenderer({ antialias: true });
         this.renderer.setClearColor('#000000');
@@ -55,9 +57,10 @@ extends Component {
 
     componentLoadSubjects() {
         this.sceneSubjects = this.componentAddSubjects();
-        console.log(this.scene)
         for ( let i = 0; i < this.sceneSubjects.length; i++ ) {
             this.sceneSubjects[i].update(this.scene);
+            console.log(this.sceneSubjects[i]);
+            
         }
 
         // Start Rendering
