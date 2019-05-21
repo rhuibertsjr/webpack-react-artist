@@ -29,7 +29,7 @@ extends Component {
 
         // Initialize Camera
         this.camera  = new PerspectiveCamera( 75, this.state.aspect, 1, 1000);
-        this.camera.position.set(0,10,0); 
+        this.camera.position.set(0,100,0); 
         this.camera.lookAt(this.scene.position);
 
         // Initialize Renderer
@@ -42,13 +42,12 @@ extends Component {
         this.mount.appendChild(this.renderer.domElement);
 
         // Event Listeners
-        window.addEventListener('resize', this.componentOnResize, true);
+        window.addEventListener('resize', this.componentOnResize, false);
     }
 
     componentAddSubjects() {
         const sceneSubjects = [
-            new Cube(this.scene),
-            new Cube(this.scene)
+            new Terrain(this.scene)
         ];
 
         return sceneSubjects;
@@ -56,6 +55,7 @@ extends Component {
 
     componentLoadSubjects() {
         this.sceneSubjects = this.componentAddSubjects();
+        console.log(this.scene)
         for ( let i = 0; i < this.sceneSubjects.length; i++ ) {
             this.sceneSubjects[i].update(this.scene);
         }
@@ -70,7 +70,10 @@ extends Component {
     }
 
     componentOnResize() {
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.camera.aspect = window.innerWidth / window.innerHeight;
+        this.camera.updateProjectionMatrix();
+
+        this.renderer.setSize(window.innerWidth, window.innerHeight, true);
     }
 
     render() {

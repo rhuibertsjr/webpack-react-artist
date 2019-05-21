@@ -1,14 +1,15 @@
-import { Mesh, PlaneBufferGeometry, MeshPhongMaterial} from 'three';
+import { Mesh, MeshBasicMaterial, PlaneBufferGeometry } from 'three';
+import * as THREE from 'three';
 
 export function Terrain(scene) {
     const mesh = new Mesh(
-        new PlaneBufferGeometry( 40, 40 ),
-        new MeshPhongMaterial( { color: 0x999999, specular: 0x101010 } )
+        new THREE.PlaneBufferGeometry( 1, 1, 1 ),
+        new MeshBasicMaterial( { color: 0xffff00 } )
     ); 
 
     scene.add( mesh );
 
     this.update = () => {
-        return false;
+
     }
 }
