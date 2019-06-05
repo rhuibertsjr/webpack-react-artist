@@ -1,37 +1,34 @@
-import { Mesh, MeshBasicMaterial, BoxGeometry, PlaneBufferGeometry, Fog} from 'three';
+import { Mesh, BoxGeometry, PlaneBufferGeometry, MeshPhongMaterial } from 'three';
 
 export function Terrain(scene) {
     const mesh = new Mesh(
-        new PlaneBufferGeometry(  10, 10 ),
-        new MeshBasicMaterial( { color: '#242424'} )
+        new PlaneBufferGeometry(  100, 100 ),
+        new MeshPhongMaterial( { color: '#242424'} )
     ); 
 
+    // Init
+    mesh.receiveShadow = true;
     mesh.rotateX( - Math.PI / 2); // !
-    scene.add( mesh );
 
+    scene.add( mesh );
     this.update = () => {
         
-    }
-}
-
-export function FogRender(scene) {
-    const fog = new Fog('#242424', 0.0025, 20)
-    scene.fog = fog ;
-
-    this.update = () => {
-
     }
 }
 
 export function Cube(scene) {
     const mesh = new Mesh(
         new BoxGeometry( 1, 1, 1 ),
-        new MeshBasicMaterial( { color: 0x999999 } )
+        new MeshPhongMaterial( { color: 0x999999 } )
     ); 
 
-    scene.add( mesh );
+    // Init
+    mesh.position.set( 0, 1, 0 )
+    mesh.receiveShadow = true;
+    mesh.castShadow = true;
 
+    scene.add( mesh );
     this.update = () => {
-        mesh.position.set( 0, 1, 0 )
+        
     }
 }

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { WebGLRenderer, PerspectiveCamera, Scene } from 'three';
+import { WebGLRenderer, PerspectiveCamera, Scene, Fog, PCFSoftShadowMap } from 'three';
 
 import SceneRenderer from '../../components/scene-renderer/SceneRenderer';
-import { Terrain, Cube, FogRender } from '../../components/scene-subjects/SceneSubjects';
+import { Terrain, Cube } from '../../components/scene-subjects/SceneSubjects';
+import { Light, Ambient } from '../../components/scene-lighting/SceneLights';
 
 export default class SceneManager
 extends Component {
@@ -24,17 +25,23 @@ extends Component {
     componentDidMount() {
         // Initialize Scene
         this.scene = new Scene();
+        this.scene.fog = new Fog( '#ffffff', 5, 10 );
 
         // Initialize Camera
         this.camera  = new PerspectiveCamera( 75, this.state.aspect, 1, 1000);
-        this.camera.position.set(3,10,0); 
+        this.camera.position.set(1,3.5,2.5); 
         this.camera.lookAt(this.scene.position);
         this.scene.add(this.camera);
 
         // Initialize Renderer
         this.renderer = new WebGLRenderer({ antialias: true });
         this.renderer.setClearColor('#000000');
+        this.renderer.setPixelRatio( window.devicePixelRatio );
         this.renderer.setSize(this.state.width, this.state.height);
+        this.renderer.gammaInput = true;
+		this.renderer.gammaOutput = true;
+        this.renderer.shadowMap.enabled = true;
+        this.renderer.shadowMap.type = PCFSoftShadowMap;
 
         // Start Renderer
         this.componentLoadSubjects();
@@ -50,9 +57,11 @@ extends Component {
 
     componentAddSubjects() {
         const sceneSubjects = [
+            new Light(this.scene),
+            new Ambient(this.scene),
             new Terrain(this.scene),
-            new FogRender(this.scene),
             new Cube(this.scene)
+           
         ];
 
         return sceneSubjects;   
@@ -71,6 +80,7 @@ extends Component {
     componentStartRender() {
         this.renderer.render(this.scene, this.camera);
         requestAnimationFrame( this.componentStartRender );
+        console.log('rendering')
     }
 
     componentOnResize() {
