@@ -1,7 +1,7 @@
 import { SpotLight, AmbientLight } from 'three';
 
 export function Light(scene) {
-    const spotLight = new SpotLight( 0xffffff, .2, 0, Math.PI / 2 );
+    const spotLight = new SpotLight( 0xffffff, .8, 0, Math.PI / 2 );
 
     // Init
     spotLight.position.set( 1, 5, 0 );

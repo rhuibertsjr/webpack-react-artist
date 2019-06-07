@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { WebGLRenderer, PerspectiveCamera, Scene, Fog, PCFSoftShadowMap } from 'three';
 
+import SceneLoader from '../../components/scene-loader/SceneLoader';
 import SceneRenderer from '../../components/scene-renderer/SceneRenderer';
+
 import { Terrain, Cube } from '../../components/scene-subjects/SceneSubjects';
 import { Light, Ambient } from '../../components/scene-lighting/SceneLights';
 
@@ -28,7 +30,7 @@ extends Component {
         this.scene.fog = new Fog( '#ffffff', 5, 10 );
 
         // Initialize Camera
-        this.camera  = new PerspectiveCamera( 75, this.state.aspect, 1, 1000);
+        this.camera = new PerspectiveCamera( 75, this.state.aspect, 1, 1000);
         this.camera.position.set(1,3.5,2.5); 
         this.camera.lookAt(this.scene.position);
         this.scene.add(this.camera);
@@ -61,7 +63,6 @@ extends Component {
             new Ambient(this.scene),
             new Terrain(this.scene),
             new Cube(this.scene)
-           
         ];
 
         return sceneSubjects;   
@@ -80,14 +81,12 @@ extends Component {
     componentStartRender() {
         this.renderer.render(this.scene, this.camera);
         requestAnimationFrame( this.componentStartRender );
-        console.log('rendering')
     }
 
     componentOnResize() {
-        this.camera.aspect = window.innerWidth / window.innerHeight;
-        this.camera.updateProjectionMatrix();
-
         this.renderer.setSize(window.innerWidth, window.innerHeight, true);
+        this.camera.updateProjectionMatrix();
+        this.camera.aspect = window.innerWidth / window.innerHeight;
     }
 
     render() {
