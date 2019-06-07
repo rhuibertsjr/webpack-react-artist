@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { WebGLRenderer, PerspectiveCamera, Scene, Fog, PCFSoftShadowMap } from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
-import SceneLoader from '../../components/scene-loader/SceneLoader';
+// import SceneLoader from '../../components/scene-loader/SceneLoader';
 import SceneRenderer from '../../components/scene-renderer/SceneRenderer';
 
 import { Terrain, Cube } from '../../components/scene-subjects/SceneSubjects';
@@ -44,10 +45,17 @@ extends Component {
 		this.renderer.gammaOutput = true;
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = PCFSoftShadowMap;
+        
+        // Initialize Controls
+        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+
+        console.log(this.controls)
 
         // Start Renderer
         this.componentLoadSubjects();
         this.mount.appendChild(this.renderer.domElement);
+        this.controls.update();
+        this.componentStartRender();
 
         // Event Listeners
         window.addEventListener('resize', this.componentOnResize, false);
@@ -79,8 +87,10 @@ extends Component {
     }
 
     componentStartRender() {
-        this.renderer.render(this.scene, this.camera);
+        this.controls.update();
         requestAnimationFrame( this.componentStartRender );
+        this.renderer.render(this.scene, this.camera);
+
     }
 
     componentOnResize() {
