@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { WebGLRenderer, PerspectiveCamera, Scene, Fog, PCFSoftShadowMap } from 'three';
+import { WebGLRenderer, PerspectiveCamera, Scene, PCFSoftShadowMap, Fog } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 // import SceneLoader from '../../components/scene-loader/SceneLoader';
@@ -28,7 +28,7 @@ extends Component {
     componentDidMount() {
         // Initialize Scene
         this.scene = new Scene();
-        this.scene.fog = new Fog( '#ffffff', 5, 10 );
+        this.scene.fog = new Fog('#242424', 5, 15)
 
         // Initialize Camera
         this.camera = new PerspectiveCamera( 75, this.state.aspect, 1, 1000);
@@ -37,24 +37,24 @@ extends Component {
         this.scene.add(this.camera);
 
         // Initialize Renderer
-        this.renderer = new WebGLRenderer({ antialias: true });
-        this.renderer.setClearColor('#000000');
+        this.renderer = new WebGLRenderer({ antialias: false }); // true on production
+        this.renderer.setClearColor( '#242424' );
         this.renderer.setPixelRatio( window.devicePixelRatio );
         this.renderer.setSize(this.state.width, this.state.height);
-        this.renderer.gammaInput = true;
-		this.renderer.gammaOutput = true;
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = PCFSoftShadowMap;
         
         // Initialize Controls
         this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-
-        console.log(this.controls)
+        this.controls.minDistance = 5;
+        this.controls.maxDistance = 8;
+        this.controls.enablePan = false;
 
         // Start Renderer
         this.componentLoadSubjects();
         this.mount.appendChild(this.renderer.domElement);
         this.controls.update();
+
         this.componentStartRender();
 
         // Event Listeners

@@ -1,9 +1,14 @@
 import { Mesh, BoxGeometry, PlaneBufferGeometry, MeshPhongMaterial } from 'three';
 
 export function Terrain(scene) {
+
+    const material = new MeshPhongMaterial( { color: '#282828'} );
+    material.reflectivity = 0;
+    material.shininess = 0.2;
+
     const mesh = new Mesh(
-        new PlaneBufferGeometry(  100, 100 ),
-        new MeshPhongMaterial( { color: '#242424'} )
+        new PlaneBufferGeometry(  20, 20 ),
+        material
     ); 
 
     // Init
@@ -23,7 +28,7 @@ export function Cube(scene) {
     ); 
 
     // Init
-    mesh.position.set( 0, 1, 0 )
+    mesh.position.set( 0, .5, 0 )
     mesh.receiveShadow = true;
     mesh.castShadow = true;
 
