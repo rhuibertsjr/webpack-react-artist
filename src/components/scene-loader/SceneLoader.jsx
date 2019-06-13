@@ -1,26 +1,21 @@
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { GLTFLoader, Mesh } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import gltfPath from '../../assets/models/easel.gltf';
 
-export function LoadModel( scene ) {
+export function LoadModel(scene) {
 
-    let loader = GLTFLoader();
+    var loader = new GLTFLoader();
 
-    loader.load('../../assets/models/**MODELHERE**', function( gltf ) {
-            scene.add( gltf.scene );
-        },
+    loader.load(gltfPath, function (gltf) {
 
-        // Error while Loading
-        function ( xhr ) {
-            console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-        },
+        scene.add(gltf.scene);
 
-        // Error while Rendering
-        function ( error ) {
-            console.log( 'An error happened' );
-        }
-    );
+    }, undefined, function (error) {
 
-    scene.add( bus.frame );
+        console.error(error);
+
+    });
+
     this.update = () => {
-        
+
     }
 }

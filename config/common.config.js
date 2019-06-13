@@ -33,6 +33,7 @@ module.exports = {
             },
             {
                 test: /.*\.(gif|png|jpe?g|svg|ico)$/i,
+                exclude: /gltf/,
                 use: [
                     {
                         loader: 'file-loader',
@@ -40,6 +41,23 @@ module.exports = {
                             name: 'assets/[name].[ext]',
                         }
                     },
+                ]
+            },
+            {
+                test: /\.(gltf)$/,
+                use: [
+                  {
+                    loader: "gltf-webpack-loader"
+                  }
+                ]
+            },
+            {
+                test: /\.(bin)$/,
+                use: [
+                  {
+                    loader: 'file-loader',
+                    options: {}
+                  }
                 ]
             }
         ]

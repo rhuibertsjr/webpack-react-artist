@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { WebGLRenderer, PerspectiveCamera, Scene, PCFSoftShadowMap, Fog } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
-// import SceneLoader from '../../components/scene-loader/SceneLoader';
+import { LoadModel } from '../../components/scene-loader/SceneLoader';
 import SceneRenderer from '../../components/scene-renderer/SceneRenderer';
 
 import { Terrain, Cube } from '../../components/scene-subjects/SceneSubjects';
@@ -70,7 +70,8 @@ extends Component {
             new Light(this.scene),
             new Ambient(this.scene),
             new Terrain(this.scene),
-            new Cube(this.scene)
+            new Cube(this.scene),
+            new LoadModel(this.scene)
         ];
 
         return sceneSubjects;   
