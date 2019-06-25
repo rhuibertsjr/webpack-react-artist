@@ -1,4 +1,5 @@
 import React from 'react';
+import soundIcon from '../../assets/images/sound.svg'
 
 export const Menu = props => {
     return (
@@ -7,7 +8,7 @@ export const Menu = props => {
                 <span className="burger"></span>
             </div>
             <div className="btn-round">
-                <span className="burger"></span>
+                <img className="sound-icon" src={ soundIcon } />
             </div>
         </div>
     )

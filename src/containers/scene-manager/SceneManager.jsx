@@ -29,6 +29,8 @@ extends Component {
         this.componentAddSubjects = this.componentAddSubjects.bind(this);
         this.componentLoadSubjects = this.componentLoadSubjects.bind(this);
         this.componentOnResize = this.componentOnResize.bind(this);
+
+        this.userMouseMoveHandler = this.componentOnResize.bind(this);
     }
 
     componentDidMount() {
@@ -38,12 +40,12 @@ extends Component {
 
         // Initialize Camera
         this.camera = new PerspectiveCamera( 75, this.state.aspect, 1, 1000);
-        this.camera.position.set(1,3.5,2.5); 
+        this.camera.position.set(1,4.5,2.5); 
         this.camera.lookAt(this.scene.position);
         this.scene.add(this.camera);
 
         // Initialize Renderer
-        this.renderer = new WebGLRenderer({ antialias: false }); // true on production
+        this.renderer = new WebGLRenderer({ antialias: true }); // true on production
         this.renderer.setClearColor( '#242424' );
         this.renderer.setPixelRatio( window.devicePixelRatio );
         this.renderer.setSize(this.state.width, this.state.height);
@@ -123,7 +125,7 @@ extends Component {
     }
 
     render() {
-        return <SceneRenderer render={ (mount) => { this.mount = mount } }></SceneRenderer>
+        return <SceneRenderer render={ (mount) => { this.mount = mount } } title="episode 1"></SceneRenderer>
     }
 
 }

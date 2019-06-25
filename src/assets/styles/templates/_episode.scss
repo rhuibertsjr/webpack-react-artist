@@ -1,0 +1,51 @@
+
+/* Debugging 
+===============================================================*/
+// .app-episodes { background: red }
+.episode:nth-child(1) { background: blue }
+.episode:nth-child(2) { background: green }
+.episode:nth-child(3) { background: yellow }
+.episode:nth-child(4) { background: purple }
+.episode:nth-child(5) { background: orange }
+.episode:nth-child(6) { background: pink }
+
+/* Episodes container 
+===============================================================*/
+.app-episodes {
+    position: absolute;
+    height: 100vh; width: 120vw;
+    bottom: 0; left: -5vw; top: 0;
+    z-index: 10;
+}
+
+/* Individual episode containers 
+===============================================================*/
+.episode {
+    display: inline-block;
+    position: relative;
+    height: 100%; width: 15%;
+
+    text-align: center;
+    overflow: visible;
+    transform: skewX(-10deg);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: initial;
+
+    & .episode-title {
+        position: absolute;
+        transform: translateX(-50%);
+        bottom: 10vh; left: 50%;
+    }
+
+    & .episode-desc {
+        position: absolute;
+        transform: translateX(-50%);
+        bottom: 7vh; left: 50%;
+    }
+
+    &:first-child {
+        width: 20%;
+    }
+
+
+}

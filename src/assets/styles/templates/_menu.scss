@@ -14,7 +14,7 @@
     align-items: center;
 }
 
-/* Burger 
+/* Icons 
 ===============================================================*/
 .burger {
     display: block;
@@ -37,6 +37,21 @@
     }
 }
 
+.sound-icon {
+    display: block;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    height: auto; width: 40%;
+    left: 50%; top: 50%;
+    z-index: 30;
+
+    fill: #ffffff;
+
+    & > .cross {
+        display: none;
+    }
+}
+
 /* Button 
 ===============================================================*/
 .btn-round {
@@ -51,7 +66,7 @@
         position: absolute;
         top: 0; left: 0;
         width: 100%; height: 100%;
-        z-index: 15;
+        z-index: 50 !important;
 
         box-sizing: border-box;
         border: 2px solid rgba(255,255,255,.1);
@@ -74,3 +89,32 @@
     }
 }
 
+/* Current Display 
+===============================================================*/
+.app-current {
+    position: absolute;
+    transform: translateX(-50%);
+    bottom: 5vh; left: 50%;
+
+    color: #ffffff;
+
+    &::before {
+        content: "";
+        position: absolute;
+        transform: translate(-50%, -50%);
+        height: 1px; width: 5vw;
+        left: -40%; top: 50%;
+
+        background: #ffffff;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        transform: translate(-50%, -50%);
+        height: 1px; width: 5vw;
+        left: 140%; top: 50%;
+
+        background: #ffffff;
+    }
+}
