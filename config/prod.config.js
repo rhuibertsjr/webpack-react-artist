@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const merge = require('webpack-merge');
 const common = require('./common.config.js');
 const path = require('path');

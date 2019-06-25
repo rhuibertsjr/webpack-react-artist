@@ -8,6 +8,12 @@ import SceneRenderer from '../../components/scene-renderer/SceneRenderer';
 import { Terrain, Cube } from '../../components/scene-subjects/SceneSubjects';
 import { Light, Ambient } from '../../components/scene-lighting/SceneLights';
 
+import Easel from '../../assets/models/easel.gltf';
+import Grass from '../../assets/models/grass.gltf';
+import Fence from '../../assets/models/fence.gltf';
+import Bush from '../../assets/models/bush1.gltf';
+
+
 export default class SceneManager
 extends Component {
 
@@ -71,7 +77,23 @@ extends Component {
             new Ambient(this.scene),
             new Terrain(this.scene),
             new Cube(this.scene),
-            new LoadModel(this.scene)
+
+            // Models Here
+            // new LoadModel( this.scene,
+            //     Easel,
+            //     { x: 0, y: 0, z: 0 }
+            // ),
+
+            // Enviroment
+            new LoadModel( this.scene,
+                Grass,
+                { x: 0, y: 0, z: 0, r: 95 }
+            ),
+
+            new LoadModel( this.scene,
+                Fence,
+                { x: -3, y: 0, z: 0, r: 10 }
+            ),
         ];
 
         return sceneSubjects;   

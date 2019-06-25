@@ -13,7 +13,7 @@ export function Terrain(scene) {
 
     // Init
     mesh.receiveShadow = true;
-    mesh.rotateX( - Math.PI / 2); // !
+    mesh.rotateX( - Math.PI / 2); // ! 
 
     scene.add( mesh );
     this.update = () => {
