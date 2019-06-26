@@ -8,10 +8,7 @@ import SceneRenderer from '../../components/scene-renderer/SceneRenderer';
 import { Terrain, Cube } from '../../components/scene-subjects/SceneSubjects';
 import { Light, Ambient } from '../../components/scene-lighting/SceneLights';
 
-import Easel from '../../assets/models/easel.gltf';
-import Grass from '../../assets/models/grass.gltf';
-import Fence from '../../assets/models/fence.gltf';
-import Bush from '../../assets/models/bush1.gltf';
+import TerrainModel from '../../assets/models/terrain.gltf';
 
 
 export default class SceneManager
@@ -55,7 +52,7 @@ extends Component {
         // Initialize Controls
         this.controls = new OrbitControls(this.camera, this.renderer.domElement);
         this.controls.minDistance = 5;
-        this.controls.maxDistance = 8;
+        this.controls.maxDistance = 6;
         this.controls.enablePan = false;
 
         // Start Renderer
@@ -75,27 +72,21 @@ extends Component {
 
     componentAddSubjects() {
         const sceneSubjects = [
-            new Light(this.scene),
-            new Ambient(this.scene),
-            new Terrain(this.scene),
-            new Cube(this.scene),
 
-            // Models Here
-            // new LoadModel( this.scene,
-            //     Easel,
-            //     { x: 0, y: 0, z: 0 }
-            // ),
-
+            // Objects
+            
             // Enviroment
             new LoadModel( this.scene,
-                Grass,
+                TerrainModel,
                 { x: 0, y: 0, z: 0, r: 95 }
             ),
 
-            new LoadModel( this.scene,
-                Fence,
-                { x: -3, y: 0, z: 0, r: 10 }
-            ),
+            new Light(this.scene),
+            new Ambient(this.scene),
+            new Terrain(this.scene),
+
+            // Debugging
+            // new Cube(this.scene),
         ];
 
         return sceneSubjects;   
