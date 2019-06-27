@@ -2,6 +2,10 @@
 
 This is a website about the Dutch artist Rembrandt van Rijn, the website is for educational purposes.
 
+## Live preview link
+
+* [Click here :D](http://www.rhuiberts.nl/artist/)
+
 ## Built With
 
 * [ThreeJS](https://threejs.org/) - A Webgl library
