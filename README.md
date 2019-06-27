@@ -9,9 +9,9 @@ This is a website about the Dutch artist Rembrandt van Rijn, the website is for 
 
 ## Live preview link
 
-![](src/assets/images/Screen Recording 2019-06-27 at 19.36.44.mov)
-![](src/assets/images/Screenshot 2019-06-27 at 19.30.35.png)
-![](src/assets/images/Screenshot 2019-06-27 at 19.31.03.png)
+![3D Model of Rembrandt](src/assets/images/rembrandt.gif)
+![Some Screen from the first episode 1/2](src/assets/images/scene.png)
+![Some Screen from the first episode 2/2](src/assets/images/scene2.png)
 
 ## Built With
 
