@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { WebGLRenderer, PerspectiveCamera, Scene, PCFSoftShadowMap, Fog } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
+import TerrainModel from '../../assets/models/terrain.gltf';
+import EaselModel from '../../assets/models/easel.gltf';
+
 import { LoadModel } from '../../components/scene-loader/SceneLoader';
 import SceneRenderer from '../../components/scene-renderer/SceneRenderer';
 
 import { Terrain, Cube } from '../../components/scene-subjects/SceneSubjects';
 import { Light, Ambient } from '../../components/scene-lighting/SceneLights';
-
-import TerrainModel from '../../assets/models/terrain.gltf';
 
 
 export default class SceneManager
@@ -42,7 +43,7 @@ extends Component {
         this.scene.add(this.camera);
 
         // Initialize Renderer
-        this.renderer = new WebGLRenderer({ antialias: true }); // true on production
+        this.renderer = new WebGLRenderer({ antialias: false }); // true on production
         this.renderer.setClearColor( '#242424' );
         this.renderer.setPixelRatio( window.devicePixelRatio );
         this.renderer.setSize(this.state.width, this.state.height);
@@ -74,13 +75,17 @@ extends Component {
         const sceneSubjects = [
 
             // Objects
-            
-            // Enviroment
+            new LoadModel( this.scene,
+                EaselModel,
+                { x: 0, y: 0, z: -1, r: 360 }
+            ),
+
+            // // Enviroment
             new LoadModel( this.scene,
                 TerrainModel,
                 { x: 0, y: 0, z: 0, r: 95 }
             ),
-
+            
             new Light(this.scene),
             new Ambient(this.scene),
             new Terrain(this.scene),
@@ -94,9 +99,9 @@ extends Component {
 
     componentLoadSubjects() {
         this.sceneSubjects = this.componentAddSubjects();
-        for ( let i = 0; i < this.sceneSubjects.length; i++ ) {
-            this.sceneSubjects[i].update(this.scene);
-        }
+        // for ( let i = 0; i < this.sceneSubjects.length; i++ ) {
+        //     this.sceneSubjects[i].update(this.scene);
+        // }
 
         // Start Rendering
         this.renderer.render(this.scene, this.camera);

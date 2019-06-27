@@ -54,14 +54,12 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(bin)$/,
-                use: [
-                  {
-                    loader: 'file-loader',
-                    options: {}
-                  }
-                ]
-            }
+                test: /gltf.*\.(bin|png|jpe?g|gif)$/,
+                loader: 'file-loader',
+                options: {
+                  name: 'assets/[name].[hash:7].[ext]'
+                }
+            },
         ]
     },
     plugins: [

@@ -4,7 +4,7 @@ export function Light(scene) {
     const spotLight = new SpotLight( 0xffffff, .8, 0, Math.PI / 2 );
 
     // Init
-    spotLight.position.set( 1, 5, 0 );
+    spotLight.position.set( 0, 5, 0 );
     spotLight.target.position.set( 0, 1, 0 );
     spotLight.castShadow = true;
     spotLight.angle = 2;
